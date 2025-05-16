@@ -14,9 +14,13 @@ import edu.ucsb.cs156.courses.services.jobs.JobService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,10 +29,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.domain.PageRequest;
-import java.util.Arrays;
-import java.util.List;
-import org.springframework.data.domain.Sort.Direction;
 
 @Tag(name = &quot;Jobs&quot;)
 @RequestMapping(&quot;/api/jobs&quot;)
@@ -78,16 +78,16 @@ import org.springframework.data.domain.Sort.Direction;
               description = &quot;sort field&quot;,
               example = &quot;createdAt&quot;,
               required = false)
-          @RequestParam(defaultValue=&quot;createdAt&quot;)
+          @RequestParam(defaultValue = &quot;createdAt&quot;)
           String sortField,
       @Parameter(
               name = &quot;sortDirection&quot;,
               description = &quot;sort direction&quot;,
               example = &quot;ASC&quot;,
               required = false)
-          @RequestParam(defaultValue=&quot;ASC&quot;)
+          @RequestParam(defaultValue = &quot;ASC&quot;)
           String sortDirection) {
-    
+
 <span class="fc" id="L91">    List&lt;String&gt; allowedSortFields = Arrays.asList(&quot;createdAt&quot;, &quot;updatedAt&quot;, &quot;createdBy&quot;, &quot;status&quot;);</span>
 
 <span class="fc bfc" id="L93" title="All 2 branches covered.">    if (!allowedSortFields.contains(sortField)) {</span>
@@ -97,20 +97,20 @@ import org.springframework.data.domain.Sort.Direction;
     }
 
 <span class="fc" id="L99">    List&lt;String&gt; allowedSortDirections = Arrays.asList(&quot;ASC&quot;, &quot;DESC&quot;);</span>
-<span class="fc bfc" id="L100" title="All 2 branches covered.">    if (!allowedSortDirections.contains(sortDirection)) {</span>
+<span class="pc bpc" id="L100" title="1 of 2 branches missed.">    if (!allowedSortDirections.contains(sortDirection)) {</span>
 <span class="fc" id="L101">      throw new IllegalArgumentException(</span>
 <span class="fc" id="L102">          String.format(</span>
               &quot;%s is not a valid sort direction.  Valid values are %s&quot;,
               sortDirection, allowedSortDirections));
     }
 
-<span class="fc" id="L107">    Direction sortDirectionObject = Direction.ASC;</span>
-<span class="fc bfc" id="L108" title="All 2 branches covered.">    if (sortDirection.equals(&quot;DESC&quot;)) {</span>
-<span class="fc" id="L109">      sortDirectionObject = Direction.DESC;</span>
+<span class="nc" id="L107">    Direction sortDirectionObject = Direction.ASC;</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">    if (sortDirection.equals(&quot;DESC&quot;)) {</span>
+<span class="nc" id="L109">      sortDirectionObject = Direction.DESC;</span>
     }
 
-<span class="fc" id="L112">    PageRequest pageRequest = PageRequest.of(page, pageSize, sortDirectionObject, sortField);</span>
-<span class="fc" id="L113">    return jobsRepository.findAll(pageRequest);</span>
+<span class="nc" id="L112">    PageRequest pageRequest = PageRequest.of(page, pageSize, sortDirectionObject, sortField);</span>
+<span class="nc" id="L113">    return jobsRepository.findAll(pageRequest);</span>
   }
 
   @Operation(summary = &quot;Delete all job records&quot;)
