@@ -25,6 +25,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.PageRequest;
+import java.util.Arrays;
+import java.util.List;
+import org.springframework.data.domain.Sort.Direction;
 
 @Tag(name = "Jobs")
 @RequestMapping("/api/jobs")
@@ -46,9 +50,67 @@ public class JobsController extends ApiController {
   @Operation(summary = "List all jobs")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @GetMapping("/all")
-  public Iterable<Job> allJobs() {
+  public Iterable<Job> allJobs(){
     Iterable<Job> jobs = jobsRepository.findAll();
     return jobs;
+  }
+
+  @Operation(summary = "Get a paginated list of jobs")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @GetMapping(value = "/paged", produces = "application/json")
+  public Iterable<Job> someJobs(
+      @Parameter(
+              name = "page",
+              description = "what page of the data",
+              example = "0",
+              required = true)
+          @RequestParam
+          int page,
+      @Parameter(
+              name = "pageSize",
+              description = "size of each page",
+              example = "5",
+              required = true)
+          @RequestParam
+          int pageSize,
+      @Parameter(
+              name = "sortField",
+              description = "sort field",
+              example = "createdAt",
+              required = false)
+          @RequestParam(defaultValue="createdAt")
+          String sortField,
+      @Parameter(
+              name = "sortDirection",
+              description = "sort direction",
+              example = "ASC",
+              required = false)
+          @RequestParam(defaultValue="ASC")
+          String sortDirection) {
+    
+    List<String> allowedSortFields = Arrays.asList("createdAt", "updatedAt", "createdBy", "status");
+
+    if (!allowedSortFields.contains(sortField)) {
+      throw new IllegalArgumentException(
+          String.format(
+              "%s is not a valid sort field.  Valid values are %s", sortField, allowedSortFields));
+    }
+
+    List<String> allowedSortDirections = Arrays.asList("ASC", "DESC");
+    if (!allowedSortDirections.contains(sortDirection)) {
+      throw new IllegalArgumentException(
+          String.format(
+              "%s is not a valid sort direction.  Valid values are %s",
+              sortDirection, allowedSortDirections));
+    }
+
+    Direction sortDirectionObject = Direction.ASC;
+    if (sortDirection.equals("DESC")) {
+      sortDirectionObject = Direction.DESC;
+    }
+
+    PageRequest pageRequest = PageRequest.of(page, pageSize, sortDirectionObject, sortField);
+    return jobsRepository.findAll(pageRequest);
   }
 
   @Operation(summary = "Delete all job records")
