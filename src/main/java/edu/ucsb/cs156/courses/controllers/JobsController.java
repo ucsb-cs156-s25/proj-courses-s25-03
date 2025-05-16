@@ -50,7 +50,7 @@ public class JobsController extends ApiController {
   @Operation(summary = "List all jobs")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @GetMapping("/all")
-  public Iterable<Job> allJobs(){
+  public Iterable<Job> allJobs() {
     Iterable<Job> jobs = jobsRepository.findAll();
     return jobs;
   }
