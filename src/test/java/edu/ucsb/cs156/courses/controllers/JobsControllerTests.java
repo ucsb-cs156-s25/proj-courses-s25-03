@@ -554,6 +554,7 @@ public class JobsControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(get("/api/jobs/paged?page=0&pageSize=10&sortField=invalid&sortDirection=DESC"))
+            .perform(get("/api/jobs/paged?page=0&pageSize=10&sortField=invalid&sortDirection=DESC"))
             .andExpect(status().isBadRequest())
             .andReturn();
 
@@ -578,6 +579,7 @@ public class JobsControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
+                get("/api/jobs/paged?page=0&pageSize=10&sortField=createdBy&sortDirection=INVALID"))
                 get("/api/jobs/paged?page=0&pageSize=10&sortField=createdBy&sortDirection=INVALID"))
             .andExpect(status().isBadRequest())
             .andReturn();
