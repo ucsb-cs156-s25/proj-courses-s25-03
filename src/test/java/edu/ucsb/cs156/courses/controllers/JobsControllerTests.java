@@ -26,8 +26,10 @@ import edu.ucsb.cs156.courses.repositories.UserRepository;
 import edu.ucsb.cs156.courses.services.UCSBCurriculumService;
 import edu.ucsb.cs156.courses.services.UCSBSubjectsService;
 import edu.ucsb.cs156.courses.services.jobs.JobService;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -37,12 +39,12 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.web.servlet.MvcResult;
 
 @Slf4j
 @WebMvcTest(controllers = JobsController.class)
@@ -69,14 +71,10 @@ public class JobsControllerTests extends ControllerTestCase {
   @MockBean ConvertedSectionCollection convertedSectionCollection;
 
   ArrayList<Job> emptyArray = new ArrayList<Job>();
-  PageRequest pageRequest_0_10_DESC_createdAt =
-      PageRequest.of(0, 10, Direction.DESC, "createdAt");
-  PageRequest pageRequest_0_10_DESC_updatedAt =
-      PageRequest.of(0, 10, Direction.DESC, "updatedAt");
-  PageRequest pageRequest_0_10_ASC_createdBy =
-      PageRequest.of(0, 10, Direction.ASC, "createdBy");
-  PageRequest pageRequest_0_10_ASC_status =
-      PageRequest.of(0, 10, Direction.ASC, "status");
+  PageRequest pageRequest_0_10_DESC_createdAt = PageRequest.of(0, 10, Direction.DESC, "createdAt");
+  PageRequest pageRequest_0_10_DESC_updatedAt = PageRequest.of(0, 10, Direction.DESC, "updatedAt");
+  PageRequest pageRequest_0_10_ASC_createdBy = PageRequest.of(0, 10, Direction.ASC, "createdBy");
+  PageRequest pageRequest_0_10_ASC_status = PageRequest.of(0, 10, Direction.ASC, "status");
 
   private final Page<Job> emptyPage_0_10_DESC_createdAt =
       new PageImpl<Job>(emptyArray, pageRequest_0_10_DESC_createdAt, 0);
@@ -471,8 +469,7 @@ public class JobsControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                get(
-                    "/api/jobs/paged?page=0&pageSize=10&sortField=createdAt&sortDirection=DESC"))
+                get("/api/jobs/paged?page=0&pageSize=10&sortField=createdAt&sortDirection=DESC"))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -495,8 +492,7 @@ public class JobsControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                get(
-                    "/api/jobs/paged?page=0&pageSize=10&sortField=updatedAt&sortDirection=DESC"))
+                get("/api/jobs/paged?page=0&pageSize=10&sortField=updatedAt&sortDirection=DESC"))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -519,8 +515,7 @@ public class JobsControllerTests extends ControllerTestCase {
     MvcResult response =
         mockMvc
             .perform(
-                get(
-                    "/api/jobs/paged?page=0&pageSize=10&sortField=createdBy&sortDirection=ASC"))
+                get("/api/jobs/paged?page=0&pageSize=10&sortField=createdBy&sortDirection=ASC"))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -530,21 +525,18 @@ public class JobsControllerTests extends ControllerTestCase {
     assertEquals(expectedResponseAsJson, actualResponse);
   }
 
-    @WithMockUser(roles = {"ADMIN"})
+  @WithMockUser(roles = {"ADMIN"})
   @Test
   public void test_getSomeJobs_status_empty() throws Exception {
 
     // arrange
 
-    when(jobsRepository.findAll(pageRequest_0_10_ASC_status))
-        .thenReturn(emptyPage_0_10_ASC_status);
+    when(jobsRepository.findAll(pageRequest_0_10_ASC_status)).thenReturn(emptyPage_0_10_ASC_status);
 
     // act
     MvcResult response =
         mockMvc
-            .perform(
-                get(
-                    "/api/jobs/paged?page=0&pageSize=10&sortField=status&sortDirection=ASC"))
+            .perform(get("/api/jobs/paged?page=0&pageSize=10&sortField=status&sortDirection=ASC"))
             .andExpect(status().isOk())
             .andReturn();
 
@@ -554,16 +546,14 @@ public class JobsControllerTests extends ControllerTestCase {
     assertEquals(expectedResponseAsJson, actualResponse);
   }
 
-  @Test
   @WithMockUser(roles = {"ADMIN"})
+  @Test
   public void when_sortField_is_invalid_throws_exception() throws Exception {
 
     // act
     MvcResult response =
         mockMvc
-            .perform(
-                get(
-                    "/api/jobs/paged?page=0&pageSize=10&sortField=invalid&sortDirection=DESC"))
+            .perform(get("/api/jobs/paged?page=0&pageSize=10&sortField=invalid&sortDirection=DESC"))
             .andExpect(status().isBadRequest())
             .andReturn();
 
@@ -580,16 +570,15 @@ public class JobsControllerTests extends ControllerTestCase {
     assertEquals(expectedResponseAsJson, actualResponse);
   }
 
-  @Test
   @WithMockUser(roles = {"ADMIN"})
+  @Test
   public void when_sortDirection_is_invalid_throws_exception() throws Exception {
 
     // act
     MvcResult response =
         mockMvc
             .perform(
-                get(
-                    "/api/jobs/paged?page=0&pageSize=10&sortField=createdBy&sortDirection=INVALID"))
+                get("/api/jobs/paged?page=0&pageSize=10&sortField=createdBy&sortDirection=INVALID"))
             .andExpect(status().isBadRequest())
             .andReturn();
 
@@ -606,4 +595,48 @@ public class JobsControllerTests extends ControllerTestCase {
     assertEquals(expectedResponseAsJson, actualResponse);
   }
 
+  @WithMockUser(roles = {"ADMIN"})
+  @Test
+  public void when_valid_parameters_createdAt_works() throws Exception {
+    ZonedDateTime t1 = ZonedDateTime.parse("2019-03-27T10:15:30Z");
+    ZonedDateTime t2 = ZonedDateTime.parse("2019-04-27T10:15:30Z");
+    ZonedDateTime t3 = ZonedDateTime.parse("2019-05-27T10:15:30Z");
+
+    Job jobStarted =
+        Job.builder()
+            .id(0L)
+            .createdBy(null)
+            .createdAt(t1)
+            .updatedAt(t2)
+            .status("running")
+            .log("Hello World! from test job!\nauthentication is not null")
+            .build();
+
+    Job jobFailed =
+        Job.builder()
+            .id(0L)
+            .createdBy(null)
+            .createdAt(t2)
+            .updatedAt(t3)
+            .status("error")
+            .log("Hello World! from test job!\nauthentication is not null\nFail!")
+            .build();
+
+    List<Job> jobsSortedByCreatedBy = List.of(jobStarted, jobFailed); // A before B alphabetically
+    PageRequest pageRequest = PageRequest.of(0, 10, Direction.ASC, "createdBy");
+    Page<Job> page = new PageImpl<>(jobsSortedByCreatedBy, pageRequest, 2);
+
+    when(jobsRepository.findAll(pageRequest)).thenReturn(page);
+
+    MvcResult response =
+        mockMvc
+            .perform(
+                get("/api/jobs/paged?page=0&pageSize=10&sortField=createdBy&sortDirection=ASC"))
+            .andExpect(status().isOk())
+            .andReturn();
+
+    String expectedJson = objectMapper.writeValueAsString(page);
+    String actualJson = response.getResponse().getContentAsString();
+    assertEquals(expectedJson, actualJson);
+  }
 }
