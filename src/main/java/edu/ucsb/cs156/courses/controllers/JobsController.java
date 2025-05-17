@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -58,7 +59,7 @@ public class JobsController extends ApiController {
   @Operation(summary = "Get a paginated list of jobs")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @GetMapping(value = "/paged", produces = "application/json")
-  public Iterable<Job> someJobs(
+  public Page<Job> someJobs(
       @Parameter(
               name = "page",
               description = "what page of the data",
