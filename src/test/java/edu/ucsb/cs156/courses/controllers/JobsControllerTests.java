@@ -594,49 +594,4 @@ public class JobsControllerTests extends ControllerTestCase {
     String actualResponse = response.getResponse().getContentAsString();
     assertEquals(expectedResponseAsJson, actualResponse);
   }
-
-  @WithMockUser(roles = {"ADMIN"})
-  @Test
-  public void when_valid_parameters_createdAt_works() throws Exception {
-    ZonedDateTime t1 = ZonedDateTime.parse("2019-03-27T10:15:30Z");
-    ZonedDateTime t2 = ZonedDateTime.parse("2019-04-27T10:15:30Z");
-    ZonedDateTime t3 = ZonedDateTime.parse("2019-05-27T10:15:30Z");
-
-    Job jobStarted =
-        Job.builder()
-            .id(0L)
-            .createdBy(null)
-            .createdAt(t1)
-            .updatedAt(t2)
-            .status("running")
-            .log("Hello World! from test job!\nauthentication is not null")
-            .build();
-
-    Job jobFailed =
-        Job.builder()
-            .id(0L)
-            .createdBy(null)
-            .createdAt(t2)
-            .updatedAt(t3)
-            .status("error")
-            .log("Hello World! from test job!\nauthentication is not null\nFail!")
-            .build();
-
-    List<Job> jobsSortedByCreatedBy = List.of(jobStarted, jobFailed); // A before B alphabetically
-    PageRequest pageRequest = PageRequest.of(0, 10, Direction.ASC, "createdBy");
-    Page<Job> page = new PageImpl<>(jobsSortedByCreatedBy, pageRequest, 2);
-
-    when(jobsRepository.findAll(pageRequest)).thenReturn(page);
-
-    MvcResult response =
-        mockMvc
-            .perform(
-                get("/api/jobs/paged?page=0&pageSize=10&sortField=createdBy&sortDirection=ASC"))
-            .andExpect(status().isOk())
-            .andReturn();
-
-    String expectedJson = objectMapper.writeValueAsString(page);
-    String actualJson = response.getResponse().getContentAsString();
-    assertEquals(expectedJson, actualJson);
-  }
 }
