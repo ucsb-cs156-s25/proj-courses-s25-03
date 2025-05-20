@@ -22,8 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 <span class="fc" id="L23">  private ObjectMapper mapper = new ObjectMapper();</span>
 
-  @Autowired
-  private ConvertedSectionCollection convertedSectionCollection;
+  @Autowired private ConvertedSectionCollection convertedSectionCollection;
 
   @Operation(summary = &quot;Get a list of room numbers for a specific building and quarter&quot;)
   @GetMapping(value = &quot;/roomnumbers&quot;, produces = &quot;application/json&quot;)
@@ -44,15 +43,16 @@ import org.springframework.web.bind.annotation.RestController;
           @RequestParam
           String buildingCode)
       throws JsonProcessingException {
-<span class="fc" id="L47">    List&lt;ConvertedSection&gt; sections =</span>
-<span class="fc" id="L48">        convertedSectionCollection.findByQuarterRangeAndBuildingCode(quarter, quarter, buildingCode);</span>
+<span class="fc" id="L46">    List&lt;ConvertedSection&gt; sections =</span>
+<span class="fc" id="L47">        convertedSectionCollection.findByQuarterRangeAndBuildingCode(</span>
+            quarter, quarter, buildingCode);
 
-        
-<span class="fc" id="L51">    Set&lt;String&gt; roomNumbers = sections.stream()</span>
-<span class="fc" id="L52">        .flatMap(section -&gt; section.getSection().getTimeLocations().stream())</span>
-<span class="fc" id="L53">        .filter(timeLocation -&gt; buildingCode.equalsIgnoreCase(timeLocation.getBuilding()))</span>
-<span class="fc" id="L54">        .map(timeLocation -&gt; timeLocation.getRoom())</span>
-<span class="fc" id="L55">        .collect(Collectors.toSet());</span>
+<span class="fc" id="L50">    Set&lt;String&gt; roomNumbers =</span>
+<span class="fc" id="L51">        sections.stream()</span>
+<span class="fc" id="L52">            .flatMap(section -&gt; section.getSection().getTimeLocations().stream())</span>
+<span class="fc" id="L53">            .filter(timeLocation -&gt; buildingCode.equalsIgnoreCase(timeLocation.getBuilding()))</span>
+<span class="fc" id="L54">            .map(timeLocation -&gt; timeLocation.getRoom())</span>
+<span class="fc" id="L55">            .collect(Collectors.toSet());</span>
 
 <span class="fc" id="L57">    String body = mapper.writeValueAsString(roomNumbers);</span>
 <span class="fc" id="L58">    return ResponseEntity.ok().body(body);</span>
