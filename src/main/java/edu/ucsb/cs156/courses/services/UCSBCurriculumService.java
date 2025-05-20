@@ -91,6 +91,46 @@ public class UCSBCurriculumService {
     return retVal;
   }
 
+  public String getJSON(String quarter, String courseLevel, String geCode, String geCollege) throws Exception {
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("ucsb-api-version", "1.0");
+    headers.set("ucsb-api-key", this.apiKey);
+
+    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
+    String params =
+        String.format(
+            "?quarter=%s&areas=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+            quarter, geCode, courseLevel, 1, 100, "true");
+    String url = CURRICULUM_ENDPOINT + params;
+
+    if (courseLevel.equals("A")) {
+      params =
+          String.format(
+              "?quarter=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+              quarter, 1, 100, "true");
+      url = CURRICULUM_ENDPOINT + params;
+    }
+
+    log.info("url=" + url);
+
+    String retVal = "";
+    MediaType contentType = null;
+    HttpStatus statusCode = null;
+
+    ResponseEntity<String> re = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+    contentType = re.getHeaders().getContentType();
+    statusCode = (HttpStatus) re.getStatusCode();
+    retVal = re.getBody();
+
+    log.trace("json: {}", retVal);
+    log.info("contentType: {} statusCode: {}", contentType, statusCode);
+    return retVal;
+  }
+
   public List<ConvertedSection> getConvertedSections(
       String subjectArea, String quarter, String courseLevel) throws Exception {
     String json = getJSON(subjectArea, quarter, courseLevel);
