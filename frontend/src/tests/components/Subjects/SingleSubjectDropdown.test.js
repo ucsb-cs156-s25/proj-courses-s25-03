@@ -198,10 +198,12 @@ describe("SingleSubjectDropdown tests", () => {
     );
 
     expect(await screen.findByText("Subject Area")).toBeInTheDocument();
-    expect(screen.getByText("ANTH - Anthropology")).toHaveAttribute(
-      "data-testid",
-      "ssd1-option-ANTH",
-    );
+    const allOptions = screen.getAllByTestId("ssd1-option-", { exact: false });
+    for (let i = 0; i < allOptions.length - 1; i++) {
+      console.log("[i]" + allOptions[i].value);
+      console.log("[i+1]" + allOptions[i + 1].value);
+      expect(allOptions[i].value < allOptions[i + 1].value).toBe(true);
+    }
   });
 
   test("if I pass a non-null onChange, it gets called when the value changes", async () => {
