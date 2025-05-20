@@ -1,7 +1,7 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 
-export default function EnrollmentDataIndexPage() {
   // Stryker disable all : placeholder for future implementation
+  export default function EnrollmentDataIndexPage() {
   return (
     <BasicLayout>
       <div className="pt-2">
