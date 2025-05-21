@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 
 @Service(&quot;sectionCSVLineService&quot;)
 <span class="fc" id="L21">@Slf4j</span>
-<span class="nc" id="L22">public class SectionCSVLineService {</span>
+<span class="fc" id="L22">public class SectionCSVLineService {</span>
   public StatefulBeanToCsv&lt;SectionCSVLine&gt; getStatefulBeanToCSV(Writer writer) throws IOException {
 <span class="fc" id="L24">    return new StatefulBeanToCsvBuilder&lt;SectionCSVLine&gt;(writer).build();</span>
   }
