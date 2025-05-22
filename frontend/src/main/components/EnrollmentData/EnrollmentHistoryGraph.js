@@ -13,7 +13,7 @@ import {
 
 export const formatTooltip = (value, _, props) => {
   return [
-    `Enrollment: ${value.toFixed(1)}, Date Created: ${props.payload.count}`,
+    `Enrollment: ${value.toFixed(1)}, Date Created: ${props.payload.dateCreated}`,
   ];
 };
 
