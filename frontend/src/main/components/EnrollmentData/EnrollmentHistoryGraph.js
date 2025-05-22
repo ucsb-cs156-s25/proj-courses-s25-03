@@ -31,15 +31,19 @@ export const createCompleteEnrollmentData = (data) => {
 // Component to render a single bar chart for a specific group of data
 const EnrollmentHistoryLineChart = ({ _data, title }) => {
   const completeData = [
-    { enrollment: 125, dateCreated: "2025-05-14T17:50:52.356611" },
+    { enrollment: 50, dateCreated: "2020-05-14T17:50:52.361636" },
     { enrollment: 24, dateCreated: "2025-05-14T17:50:52.361636" },
+    { enrollment: 125, dateCreated: "2025-05-14T17:50:52.356611" },
   ];
 
   return (
     <div data-testid="enrollment-history-graph">
       <h3>{title}</h3>
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={completeData}>
+        <LineChart
+          data={completeData}
+          margin={{ top: 5, right: 30, left: 50, bottom: 5 }}
+        >
           <XAxis dataKey="dateCreated" />
           <YAxis
             tickFormatter={(value) => `${value.toFixed(1)}`}
