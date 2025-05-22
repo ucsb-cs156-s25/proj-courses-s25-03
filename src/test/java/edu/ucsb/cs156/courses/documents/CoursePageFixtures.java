@@ -3130,4 +3130,1029 @@ public class CoursePageFixtures {
         }
 
           """;
+  public static final String MULTIPLE_COURSES =
+      """
+{
+  "pageNumber": 1,
+  "pageSize": 100,
+  "total": 1,
+  "classes": [
+    {
+      "quarter": "20241",
+      "courseId": "WRIT     50  ",
+      "title": "WRIT & RSRCH PRCESS",
+      "contactHours": 40,
+      "description": "A writing course addressing the analytical skills underlying   the research processes of various academic and professional   communities. Sections var y in topic and disciplinary emphasis.",
+      "college": "L&S",
+      "objLevelCode": "U",
+      "subjectArea": "WRIT    ",
+      "unitsFixed": 4,
+      "unitsVariableHigh": null,
+      "unitsVariableLow": null,
+      "delayedSectioning": null,
+      "inProgressCourse": null,
+      "gradingOption": "L",
+      "instructionType": "LEC",
+      "instructionTypeSecondary": null,
+      "onLineCourse": false,
+      "deptCode": "WRIT ",
+      "generalEducation": [
+        {
+          "geCode": "A2 ",
+          "geCollege": "ENGR"
+        },
+        {
+          "geCode": "A2 ",
+          "geCollege": "L&S "
+        }
+      ],
+      "classSections": [
+        {
+          "enrollCode": "51805",
+          "section": "0100",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": null,
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1517",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": "M W    ",
+              "beginTime": "10:00",
+              "endTime": "11:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "THOMAS C",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "62133",
+          "section": "0200",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": null,
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1517",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": "M W    ",
+              "beginTime": "12:00",
+              "endTime": "13:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "THOMAS C",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+  """;
+
+  public static final String A2_WITH_ONE_ONLY_LS =
+      """
+{
+  "pageNumber": 1,
+  "pageSize": 100,
+  "total": 3,
+  "classes": [
+    {
+      "quarter": "20241",
+      "courseId": "ENGL     10  ",
+      "title": "INTRO TO LIT STUDY",
+      "contactHours": 20,
+      "description": "Acquaints students with purposes and tools of literary interpretation. Introduces techniques and vocabulary of analytic discussion and critical writing. Some emphasis on poetry with attention also to drama, essay, and the novel.",
+      "college": "L&S",
+      "objLevelCode": "U",
+      "subjectArea": "ENGL    ",
+      "unitsFixed": 4,
+      "unitsVariableHigh": null,
+      "unitsVariableLow": null,
+      "delayedSectioning": null,
+      "inProgressCourse": null,
+      "gradingOption": "L",
+      "instructionType": "LEC",
+      "instructionTypeSecondary": "DIS",
+      "onLineCourse": false,
+      "deptCode": "ENGL ",
+      "generalEducation": [
+        {
+          "geCode": "A2 ",
+          "geCollege": "L&S "
+        }
+      ],
+      "classSections": [
+        {
+          "enrollCode": "18283",
+          "section": "0100",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 198,
+          "maxEnroll": 200,
+          "secondaryStatus": "R",
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "HALL",
+              "building": "EMBAR",
+              "roomCapacity": 247,
+              "days": "M W    ",
+              "beginTime": "12:30",
+              "endTime": "13:45"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "RALEY R M",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "18291",
+          "section": "0101",
+          "session": null,
+          "classClosed": null,
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 24,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1116",
+              "building": "GIRV",
+              "roomCapacity": 42,
+              "days": "M      ",
+              "beginTime": "14:00",
+              "endTime": "14:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "SUKUL S",
+              "functionCode": "Teaching but not in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "18309",
+          "section": "0102",
+          "session": null,
+          "classClosed": null,
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "4207",
+              "building": "ILP",
+              "roomCapacity": 30,
+              "days": "M      ",
+              "beginTime": "15:00",
+              "endTime": "15:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "SUKUL S",
+              "functionCode": "Teaching but not in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "18317",
+          "section": "0103",
+          "session": null,
+          "classClosed": null,
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 26,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "2116",
+              "building": "GIRV",
+              "roomCapacity": 30,
+              "days": "M      ",
+              "beginTime": "16:00",
+              "endTime": "16:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "SATORI R",
+              "functionCode": "Teaching but not in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "18325",
+          "section": "0104",
+          "session": null,
+          "classClosed": null,
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 24,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "4101",
+              "building": "ILP",
+              "roomCapacity": 30,
+              "days": "M      ",
+              "beginTime": "17:00",
+              "endTime": "17:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "SATORI R",
+              "functionCode": "Teaching but not in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "18333",
+          "section": "0105",
+          "session": null,
+          "classClosed": null,
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "3316",
+              "building": "ILP",
+              "roomCapacity": 30,
+              "days": " T     ",
+              "beginTime": "08:00",
+              "endTime": "08:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "COBURN H P",
+              "functionCode": "Teaching but not in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "18341",
+          "section": "0106",
+          "session": null,
+          "classClosed": null,
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 23,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "2617",
+              "building": "SH",
+              "roomCapacity": null,
+              "days": " T     ",
+              "beginTime": "09:00",
+              "endTime": "09:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "COBURN H P",
+              "functionCode": "Teaching but not in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "18358",
+          "section": "0107",
+          "session": null,
+          "classClosed": null,
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 26,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "2617",
+              "building": "SH",
+              "roomCapacity": null,
+              "days": " T     ",
+              "beginTime": "10:00",
+              "endTime": "10:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "TERRELL C J",
+              "functionCode": "Teaching but not in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "18366",
+          "section": "0108",
+          "session": null,
+          "classClosed": null,
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": "+CLIT +ENGL",
+          "restrictionMajorPass": "1",
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "2617",
+              "building": "SH",
+              "roomCapacity": null,
+              "days": " T     ",
+              "beginTime": "11:00",
+              "endTime": "11:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "TERRELL C J",
+              "functionCode": "Teaching but not in charge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "quarter": "20241",
+      "courseId": "WRIT     50  ",
+      "title": "WRIT & RSRCH PRCESS",
+      "contactHours": 40,
+      "description": "A writing course addressing the analytical skills underlying   the research processes of various academic and professional   communities. Sections var y in topic and disciplinary emphasis.",
+      "college": "L&S",
+      "objLevelCode": "U",
+      "subjectArea": "WRIT    ",
+      "unitsFixed": 4,
+      "unitsVariableHigh": null,
+      "unitsVariableLow": null,
+      "delayedSectioning": null,
+      "inProgressCourse": null,
+      "gradingOption": "L",
+      "instructionType": "LEC",
+      "instructionTypeSecondary": null,
+      "onLineCourse": false,
+      "deptCode": "WRIT ",
+      "generalEducation": [
+        {
+          "geCode": "A2 ",
+          "geCollege": "ENGR"
+        },
+        {
+          "geCode": "A2 ",
+          "geCollege": "L&S "
+        }
+      ],
+      "classSections": [
+        {
+          "enrollCode": "51805",
+          "section": "0100",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": null,
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1517",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": "M W    ",
+              "beginTime": "10:00",
+              "endTime": "11:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "THOMAS C",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "62133",
+          "section": "0200",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": null,
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1517",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": "M W    ",
+              "beginTime": "12:00",
+              "endTime": "13:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "THOMAS C",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "quarter": "20241",
+      "courseId": "WRIT     50E ",
+      "title": "WRIT RSRCH FOR ENGR",
+      "contactHours": 40,
+      "description": "A writing course addressing the analytical skills underlying the research p rocess of academic and professional communities within engineering.",
+      "college": "L&S",
+      "objLevelCode": "U",
+      "subjectArea": "WRIT    ",
+      "unitsFixed": 4,
+      "unitsVariableHigh": null,
+      "unitsVariableLow": null,
+      "delayedSectioning": null,
+      "inProgressCourse": null,
+      "gradingOption": "L",
+      "instructionType": "LEC",
+      "instructionTypeSecondary": null,
+      "onLineCourse": false,
+      "deptCode": "WRIT ",
+      "generalEducation": [
+        {
+          "geCode": "A2 ",
+          "geCollege": "ENGR"
+        },
+        {
+          "geCode": "A2 ",
+          "geCollege": "L&S "
+        }
+      ],
+      "classSections": [
+        {
+          "enrollCode": "49593",
+          "section": "0100",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 26,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": "A",
+          "restrictionMajor": "+EE   +ECE  +CHEME+ME   +CMPEN+PRCME",
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "3103",
+              "building": "ILP",
+              "roomCapacity": 30,
+              "days": "M W    ",
+              "beginTime": "12:00",
+              "endTime": "13:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "HUK P M",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "49601",
+          "section": "0200",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": "A",
+          "restrictionMajor": "+EE   +ECE  +CHEME+ME   +CMPEN+PRCME",
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "3103",
+              "building": "ILP",
+              "roomCapacity": 30,
+              "days": "M W    ",
+              "beginTime": "14:00",
+              "endTime": "15:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "HUK P M",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "49619",
+          "section": "0300",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 24,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": "A",
+          "restrictionMajor": "+EE   +ECE  +CHEME+ME   +CMPEN+PRCME",
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1529",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": " T R   ",
+              "beginTime": "14:00",
+              "endTime": "15:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "STANSELL A",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "49627",
+          "section": "0400",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 24,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": "A",
+          "restrictionMajor": "+EE   +ECE  +CHEME+ME   +CMPEN+PRCME",
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1529",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": " T R   ",
+              "beginTime": "16:00",
+              "endTime": "17:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "STANSELL A",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+  """;
+
+  public static final String A2_WITH_NO_ONLY_LS =
+      """
+{
+  "pageNumber": 1,
+  "pageSize": 100,
+  "total": 2,
+  "classes": [
+    {
+      "quarter": "20241",
+      "courseId": "WRIT     50  ",
+      "title": "WRIT & RSRCH PRCESS",
+      "contactHours": 40,
+      "description": "A writing course addressing the analytical skills underlying   the research processes of various academic and professional   communities. Sections var y in topic and disciplinary emphasis.",
+      "college": "L&S",
+      "objLevelCode": "U",
+      "subjectArea": "WRIT    ",
+      "unitsFixed": 4,
+      "unitsVariableHigh": null,
+      "unitsVariableLow": null,
+      "delayedSectioning": null,
+      "inProgressCourse": null,
+      "gradingOption": "L",
+      "instructionType": "LEC",
+      "instructionTypeSecondary": null,
+      "onLineCourse": false,
+      "deptCode": "WRIT ",
+      "generalEducation": [
+        {
+          "geCode": "A2 ",
+          "geCollege": "ENGR"
+        },
+        {
+          "geCode": "A2 ",
+          "geCollege": "L&S "
+        }
+      ],
+      "classSections": [
+        {
+          "enrollCode": "51805",
+          "section": "0100",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": null,
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1517",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": "M W    ",
+              "beginTime": "10:00",
+              "endTime": "11:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "THOMAS C",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "62133",
+          "section": "0200",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": null,
+          "restrictionMajor": null,
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1517",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": "M W    ",
+              "beginTime": "12:00",
+              "endTime": "13:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "THOMAS C",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "quarter": "20241",
+      "courseId": "WRIT     50E ",
+      "title": "WRIT RSRCH FOR ENGR",
+      "contactHours": 40,
+      "description": "A writing course addressing the analytical skills underlying the research p rocess of academic and professional communities within engineering.",
+      "college": "L&S",
+      "objLevelCode": "U",
+      "subjectArea": "WRIT    ",
+      "unitsFixed": 4,
+      "unitsVariableHigh": null,
+      "unitsVariableLow": null,
+      "delayedSectioning": null,
+      "inProgressCourse": null,
+      "gradingOption": "L",
+      "instructionType": "LEC",
+      "instructionTypeSecondary": null,
+      "onLineCourse": false,
+      "deptCode": "WRIT ",
+      "generalEducation": [
+        {
+          "geCode": "A2 ",
+          "geCollege": "ENGR"
+        },
+        {
+          "geCode": "A2 ",
+          "geCollege": "L&S "
+        }
+      ],
+      "classSections": [
+        {
+          "enrollCode": "49593",
+          "section": "0100",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 26,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": "A",
+          "restrictionMajor": "+EE   +ECE  +CHEME+ME   +CMPEN+PRCME",
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "3103",
+              "building": "ILP",
+              "roomCapacity": 30,
+              "days": "M W    ",
+              "beginTime": "12:00",
+              "endTime": "13:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "HUK P M",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "49601",
+          "section": "0200",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 25,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": "A",
+          "restrictionMajor": "+EE   +ECE  +CHEME+ME   +CMPEN+PRCME",
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "3103",
+              "building": "ILP",
+              "roomCapacity": 30,
+              "days": "M W    ",
+              "beginTime": "14:00",
+              "endTime": "15:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "HUK P M",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "49619",
+          "section": "0300",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 24,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": "A",
+          "restrictionMajor": "+EE   +ECE  +CHEME+ME   +CMPEN+PRCME",
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1529",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": " T R   ",
+              "beginTime": "14:00",
+              "endTime": "15:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "STANSELL A",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        },
+        {
+          "enrollCode": "49627",
+          "section": "0400",
+          "session": null,
+          "classClosed": "Y",
+          "courseCancelled": null,
+          "gradingOptionCode": null,
+          "enrolledTotal": 24,
+          "maxEnroll": 25,
+          "secondaryStatus": null,
+          "departmentApprovalRequired": false,
+          "instructorApprovalRequired": false,
+          "restrictionLevel": "A",
+          "restrictionMajor": "+EE   +ECE  +CHEME+ME   +CMPEN+PRCME",
+          "restrictionMajorPass": null,
+          "restrictionMinor": null,
+          "restrictionMinorPass": null,
+          "concurrentCourses": [],
+          "timeLocations": [
+            {
+              "room": "1529",
+              "building": "PHELP",
+              "roomCapacity": 25,
+              "days": " T R   ",
+              "beginTime": "16:00",
+              "endTime": "17:50"
+            }
+          ],
+          "instructors": [
+            {
+              "instructor": "STANSELL A",
+              "functionCode": "Teaching and in charge"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+  """;
 }

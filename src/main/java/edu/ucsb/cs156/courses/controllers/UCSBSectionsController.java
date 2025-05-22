@@ -37,14 +37,4 @@ public class UCSBSectionsController {
 
     return ResponseEntity.ok().body(body);
   }
-
-  @GetMapping(value = "/searchbyge", produces = "application/json")
-  public ResponseEntity<String> searchbyge(
-    @RequestParam String qtr, @RequestParam String level, @RequestParam String geCode, @RequestParam String geCollege)
-    throws Exception {
-
-      String body = ucsbCurriculumService.getJSON(qtr, level, geCode, geCollege);
-
-      return ResponseEntity.ok().body(body);
-    }
 }
