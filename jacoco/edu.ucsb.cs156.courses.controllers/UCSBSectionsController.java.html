@@ -37,5 +37,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 <span class="fc" id="L38">    return ResponseEntity.ok().body(body);</span>
   }
+
+  @GetMapping(value = &quot;/searchbyge&quot;, produces = &quot;application/json&quot;)
+  public ResponseEntity&lt;String&gt; searchbyge(
+    @RequestParam String qtr, @RequestParam String level, @RequestParam String geCode, @RequestParam String geCollege)
+    throws Exception {
+
+<span class="nc" id="L46">      String body = ucsbCurriculumService.getJSON(qtr, level, geCode, geCollege);</span>
+
+<span class="nc" id="L48">      return ResponseEntity.ok().body(body);</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
