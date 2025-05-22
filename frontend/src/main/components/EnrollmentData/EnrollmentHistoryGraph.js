@@ -12,7 +12,7 @@ import {
 // Stryker disable all: This is not to be run until the tests are written as it is a placeholder.
 
 export const formatTooltip = (value, _, props) => {
-  return [`Enrollment: ${value.toFixed(1)}, Count: ${props.payload.count}`];
+  return [`Enrollment: ${value.toFixed(1)}, Date Created: ${props.payload.count}`];
 };
 
 export const createCompleteEnrollmentData = (data) => {
@@ -40,7 +40,7 @@ const EnrollmentHistoryLineChart = ({ _data, title }) => {
         <LineChart data={completeData}>
           <XAxis dataKey="dateCreated" />
           <YAxis
-            tickFormatter={(value) => `${value.toFixed(1)}%`}
+            tickFormatter={(value) => `${value.toFixed(1)}`}
             // Stryker restore all
           />
 
@@ -62,7 +62,7 @@ const EnrollmentHistoryGraphs = ({ _enrollmentHistory }) => {
 
   return (
     <div data-testid="enrollment-history-graphs">
-      <EnrollmentHistoryLineChart data={enrollmentHistory} title={"t"} />
+      <EnrollmentHistoryLineChart data={enrollmentHistory} title={"Title to be implemented"} />
     </div>
   );
 };
