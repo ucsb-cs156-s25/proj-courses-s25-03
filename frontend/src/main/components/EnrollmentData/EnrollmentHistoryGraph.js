@@ -12,7 +12,7 @@ import {
 // Stryker disable all: This is not to be run until the tests are written as it is a placeholder.
 
 export const formatTooltip = (value, _, props) => {
-  return [`Percentage: ${value.toFixed(1)}%, Count: ${props.payload.count}`];
+  return [`Enrollment: ${value.toFixed(1)}, Count: ${props.payload.count}`];
 };
 
 export const createCompleteEnrollmentData = (data) => {
