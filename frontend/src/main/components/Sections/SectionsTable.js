@@ -16,6 +16,8 @@ import {
   formatStatus,
   formatInfoLink,
   renderInfoLink,
+  formatTitleLink,
+  renderTitleLink,
 } from "main/utils/sectionUtils.js";
 
 function getFirstVal(values) {
@@ -161,11 +163,14 @@ export default function SectionsTable({ sections }) {
     },
     {
       Header: "Title",
-      accessor: "courseInfo.title",
+      // accessor: "courseInfo.title",
+      accessor: formatTitleLink,
       disableGroupBy: true,
+      Cell: renderTitleLink,
 
       aggregate: getFirstVal,
-      Aggregated: ({ cell: { value } }) => `${value}`,
+      Aggregated: renderTitleLink,
+      // Aggregated: ({ cell: { value } }) => `${value}`,
     },
     {
       // Stryker disable next-line StringLiteral: this column is hidden, very hard to test
