@@ -12,7 +12,9 @@ import {
 // Stryker disable all: This is not to be run until the tests are written as it is a placeholder.
 
 export const formatTooltip = (value, _, props) => {
-  return [`Enrollment: ${value.toFixed(1)}, Date Created: ${props.payload.count}`];
+  return [
+    `Enrollment: ${value.toFixed(1)}, Date Created: ${props.payload.count}`,
+  ];
 };
 
 export const createCompleteEnrollmentData = (data) => {
@@ -62,7 +64,10 @@ const EnrollmentHistoryGraphs = ({ _enrollmentHistory }) => {
 
   return (
     <div data-testid="enrollment-history-graphs">
-      <EnrollmentHistoryLineChart data={enrollmentHistory} title={"Title to be implemented"} />
+      <EnrollmentHistoryLineChart
+        data={enrollmentHistory}
+        title={"Title to be implemented"}
+      />
     </div>
   );
 };
