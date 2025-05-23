@@ -111,7 +111,7 @@ public class UCSBCurriculumService {
 
 <span class="fc bfc" id="L112" title="All 2 branches covered.">    for (JsonNode course : courses) {</span>
 <span class="fc bfc" id="L113" title="All 2 branches covered.">      for (JsonNode ge : course.path(&quot;generalEducation&quot;)) {</span>
-<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        if (geCode.equals(ge.path(&quot;geCode&quot;).asText().trim())</span>
+<span class="fc bfc" id="L114" title="All 2 branches covered.">        if (geCode.equals(ge.path(&quot;geCode&quot;).asText().trim())</span>
 <span class="fc bfc" id="L115" title="All 2 branches covered.">            &amp;&amp; geCollege.equals(ge.path(&quot;geCollege&quot;).asText().trim())) {</span>
 <span class="fc" id="L116">          filtered.add(course);</span>
         }
