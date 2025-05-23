@@ -195,6 +195,25 @@ public class UCSBCurriculumServiceTests {
   }
 
   @Test
+  public void test_filterByCollege_works_with_no_courses() throws Exception {
+    String expectedResult = CoursePageFixtures.NO_COURSES;
+    String input = CoursePageFixtures.NO_COURSES;
+
+    String geCode = "A2";
+    String geCollege = "ENGR";
+    String quarter = "20241";
+    String level = "A";
+
+    String result = ucs.filterByCollege(input, geCode, geCollege);
+
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode expectedJson = mapper.readTree(expectedResult);
+    JsonNode actualJson = mapper.readTree(result);
+
+    assertEquals(expectedJson, actualJson);
+  }
+
+  @Test
   public void test_getSubjectsJSON_success() throws Exception {
     String expectedResult = "[ {deptCode: \"ANTH\"} ]";
     String expectedURL = UCSBCurriculumService.SUBJECTS_ENDPOINT;

@@ -104,26 +104,13 @@ public class UCSBCurriculumService {
     JsonNode root = mapper.readTree(apiResponse);
     JsonNode coursesNode = root.path("classes");
 
-    if (!coursesNode.isArray()) {
-      // no courses or not an array
-      ObjectNode emptyResult = mapper.createObjectNode();
-      emptyResult.put("pageNumber", pageNumber);
-      emptyResult.put("pageSize", pageSize);
-      emptyResult.put("total", 0);
-      emptyResult.putArray("classes");
-      return mapper.writeValueAsString(emptyResult);
-    }
-
     ArrayNode courses = (ArrayNode) coursesNode;
 
     // Filter courses by geCode and geCollege
     List<JsonNode> filtered = new ArrayList<>();
 
     for (JsonNode course : courses) {
-      log.info("Course:", course);
-
       for (JsonNode ge : course.path("generalEducation")) {
-        log.info("ge object:", ge.toString());
         if (geCode.equals(ge.path("geCode").asText().trim())
             && geCollege.equals(ge.path("geCollege").asText().trim())) {
           filtered.add(course);

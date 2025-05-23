@@ -4155,4 +4155,14 @@ public class CoursePageFixtures {
   ]
 }
   """;
+
+  public static final String NO_COURSES =
+      """
+  {
+  "pageNumber": 1,
+  "pageSize": 100,
+  "total": 0,
+  "classes": []
+  }
+  """;
 }
