@@ -195,6 +195,23 @@ public class UCSBCurriculumServiceTests {
   }
 
   @Test
+  public void test_filterByCollege_distinguishes_ge_codes() throws Exception {
+    String expectedResult = CoursePageFixtures.COURSES_FULFILLING_MULTIPLE_GE_CODES;
+    String input = CoursePageFixtures.COURSES_FULFILLING_MULTIPLE_GE_CODES;
+
+    String geCode = "A2";
+    String geCollege = "ENGR";
+
+    String result = ucs.filterByCollege(input, geCode, geCollege);
+
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode expectedJson = mapper.readTree(expectedResult);
+    JsonNode actualJson = mapper.readTree(result);
+
+    assertEquals(expectedJson, actualJson);
+  }
+
+  @Test
   public void test_filterByCollege_works_with_no_courses() throws Exception {
     String expectedResult = CoursePageFixtures.NO_COURSES;
     String input = CoursePageFixtures.NO_COURSES;
