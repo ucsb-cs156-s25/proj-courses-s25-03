@@ -48,7 +48,7 @@ courses,edu.ucsb.cs156.courses.services,UCSBAPIQuarterService,0,439,0,34,0,103,0
 courses,edu.ucsb.cs156.courses.services,UCSBSubjectsService.new TypeReference() {...},0,3,0,0,0,1,0,1,0,1
 courses,edu.ucsb.cs156.courses.services,UCSBGradeHistoryServiceImpl,0,205,0,6,0,51,0,11,0,8
 courses,edu.ucsb.cs156.courses.services,UpdateService,0,38,0,2,0,9,0,3,0,2
-courses,edu.ucsb.cs156.courses.services,UCSBCurriculumService,26,931,2,18,6,188,2,20,0,12
+courses,edu.ucsb.cs156.courses.services,UCSBCurriculumService,0,919,1,17,0,185,1,20,0,12
 courses,edu.ucsb.cs156.courses.utilities,CourseUtilities,0,68,0,2,0,12,0,2,0,1
 courses,edu.ucsb.cs156.courses.services.jobs,JobContext,0,48,0,4,0,6,0,4,0,2
 courses,edu.ucsb.cs156.courses.services.jobs,JobService,0,75,0,2,0,20,0,6,0,5
