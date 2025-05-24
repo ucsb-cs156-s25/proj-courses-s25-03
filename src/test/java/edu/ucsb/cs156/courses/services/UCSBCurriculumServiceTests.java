@@ -7,6 +7,7 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import edu.ucsb.cs156.courses.documents.CoursePageFixtures;
@@ -111,6 +112,123 @@ public class UCSBCurriculumServiceTests {
     String result = ucs.getJSON(subjectArea, quarter, level);
 
     assertEquals(expectedResult, result);
+  }
+
+  @Test
+  public void test_getByGeJSON_success() throws Exception {
+    String expectedResult = CoursePageFixtures.MULTIPLE_COURSES;
+
+    String geCode = "A2";
+    String geCollege = "ENGR";
+    String quarter = "20241";
+    String level = "L";
+
+    String expectedParams =
+        String.format(
+            "?quarter=%s&areas=%s&objLevelCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+            quarter, geCode, level, 1, 100, "true");
+    String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+    this.mockRestServiceServer
+        .expect(requestTo(expectedURL))
+        .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("ucsb-api-version", "1.0"))
+        .andExpect(header("ucsb-api-key", apiKey))
+        .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+    String result = ucs.getByGeJSON(quarter, level, geCode, geCollege);
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode expectedJson = mapper.readTree(expectedResult);
+    JsonNode actualJson = mapper.readTree(result);
+
+    assertEquals(expectedJson, actualJson);
+  }
+
+  @Test
+  public void test_getByGeJSON_success_level_A() throws Exception {
+    String expectedResult = CoursePageFixtures.MULTIPLE_COURSES;
+
+    String geCode = "A2";
+    String geCollege = "ENGR";
+    String quarter = "20241";
+    String level = "A";
+
+    String expectedParams =
+        String.format(
+            "?quarter=%s&areas=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+            quarter, geCode, 1, 100, "true");
+    String expectedURL = UCSBCurriculumService.CURRICULUM_ENDPOINT + expectedParams;
+
+    this.mockRestServiceServer
+        .expect(requestTo(expectedURL))
+        .andExpect(header("Accept", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("Content-Type", MediaType.APPLICATION_JSON.toString()))
+        .andExpect(header("ucsb-api-version", "1.0"))
+        .andExpect(header("ucsb-api-key", apiKey))
+        .andRespond(withSuccess(expectedResult, MediaType.APPLICATION_JSON));
+
+    String result = ucs.getByGeJSON(quarter, level, geCode, geCollege);
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode expectedJson = mapper.readTree(expectedResult);
+    JsonNode actualJson = mapper.readTree(result);
+
+    assertEquals(expectedJson, actualJson);
+  }
+
+  @Test
+  public void test_filterByCollege_distinguishes_colleges() throws Exception {
+    String expectedResult = CoursePageFixtures.A2_WITH_NO_ONLY_LS;
+    String input = CoursePageFixtures.A2_WITH_ONE_ONLY_LS;
+
+    String geCode = "A2";
+    String geCollege = "ENGR";
+    String quarter = "20241";
+    String level = "A";
+
+    String result = ucs.filterByCollege(input, geCode, geCollege);
+
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode expectedJson = mapper.readTree(expectedResult);
+    JsonNode actualJson = mapper.readTree(result);
+
+    assertEquals(expectedJson, actualJson);
+  }
+
+  @Test
+  public void test_filterByCollege_distinguishes_ge_codes() throws Exception {
+    String expectedResult = CoursePageFixtures.COURSES_FULFILLING_MULTIPLE_GE_CODES;
+    String input = CoursePageFixtures.COURSES_FULFILLING_MULTIPLE_GE_CODES;
+
+    String geCode = "A2";
+    String geCollege = "ENGR";
+
+    String result = ucs.filterByCollege(input, geCode, geCollege);
+
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode expectedJson = mapper.readTree(expectedResult);
+    JsonNode actualJson = mapper.readTree(result);
+
+    assertEquals(expectedJson, actualJson);
+  }
+
+  @Test
+  public void test_filterByCollege_works_with_no_courses() throws Exception {
+    String expectedResult = CoursePageFixtures.NO_COURSES;
+    String input = CoursePageFixtures.NO_COURSES;
+
+    String geCode = "A2";
+    String geCollege = "ENGR";
+    String quarter = "20241";
+    String level = "A";
+
+    String result = ucs.filterByCollege(input, geCode, geCollege);
+
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode expectedJson = mapper.readTree(expectedResult);
+    JsonNode actualJson = mapper.readTree(result);
+
+    assertEquals(expectedJson, actualJson);
   }
 
   @Test

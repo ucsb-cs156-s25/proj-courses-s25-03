@@ -1,8 +1,13 @@
 package edu.ucsb.cs156.courses.services;
 
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.*;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import edu.ucsb.cs156.courses.documents.ConvertedSection;
 import edu.ucsb.cs156.courses.documents.CoursePage;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +95,88 @@ public class UCSBCurriculumService {
     contentType = re.getHeaders().getContentType();
     statusCode = (HttpStatus) re.getStatusCode();
     retVal = re.getBody();
+
+    log.trace("json: {}", retVal);
+    log.info("contentType: {} statusCode: {}", contentType, statusCode);
+    return retVal;
+  }
+
+  public String filterByCollege(String apiResponse, String geCode, String geCollege)
+      throws Exception {
+    int pageSize = 100;
+    int pageNumber = 1;
+    ObjectMapper mapper = new ObjectMapper();
+    JsonNode root = mapper.readTree(apiResponse);
+    JsonNode coursesNode = root.path("classes");
+
+    ArrayNode courses = (ArrayNode) coursesNode;
+
+    // Filter courses by geCode and geCollege
+    List<JsonNode> filtered = new ArrayList<>();
+
+    for (JsonNode course : courses) {
+      for (JsonNode ge : course.path("generalEducation")) {
+        if (geCode.equals(ge.path("geCode").asText().trim())
+            && geCollege.equals(ge.path("geCollege").asText().trim())) {
+          filtered.add(course);
+        }
+      }
+    }
+
+    int total = filtered.size();
+
+    ObjectNode result = mapper.createObjectNode();
+    result.put("pageNumber", pageNumber);
+    result.put("pageSize", pageSize);
+    result.put("total", total);
+
+    ArrayNode classesNode = mapper.createArrayNode();
+    for (JsonNode c : filtered) {
+      classesNode.add(c);
+    }
+    result.set("classes", classesNode);
+
+    return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(result);
+  }
+
+  public String getByGeJSON(String quarter, String courseLevel, String geCode, String geCollege)
+      throws Exception {
+
+    HttpHeaders headers = new HttpHeaders();
+    headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.set("ucsb-api-version", "1.0");
+    headers.set("ucsb-api-key", this.apiKey);
+
+    HttpEntity<String> entity = new HttpEntity<>("body", headers);
+
+    String params =
+        String.format(
+            "?quarter=%s&areas=%s&objLevelCode=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+            quarter, geCode, courseLevel, 1, 100, "true");
+    String url = CURRICULUM_ENDPOINT + params;
+
+    if (courseLevel.equals("A")) {
+      params =
+          String.format(
+              "?quarter=%s&areas=%s&pageNumber=%d&pageSize=%d&includeClassSections=%s",
+              quarter, geCode, 1, 100, "true");
+      url = CURRICULUM_ENDPOINT + params;
+    }
+
+    log.info("url=" + url);
+
+    String retVal = "";
+    MediaType contentType = null;
+    HttpStatus statusCode = null;
+
+    ResponseEntity<String> re = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+    contentType = re.getHeaders().getContentType();
+    statusCode = (HttpStatus) re.getStatusCode();
+    retVal = re.getBody();
+
+    retVal = filterByCollege(retVal, geCode, geCollege);
+    log.info("Filtered JSON: {}", retVal);
 
     log.trace("json: {}", retVal);
     log.info("contentType: {} statusCode: {}", contentType, statusCode);

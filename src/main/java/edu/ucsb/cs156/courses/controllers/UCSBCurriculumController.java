@@ -32,6 +32,20 @@ public class UCSBCurriculumController extends ApiController {
     return ResponseEntity.ok().body(body);
   }
 
+  @Operation(summary = "Get course data for a given quarter, level, GE code & college")
+  @GetMapping(value = "/gesearch", produces = "application/json")
+  public ResponseEntity<String> gesearch(
+      @RequestParam String qtr,
+      @RequestParam String level,
+      @RequestParam String geCode,
+      @RequestParam String geCollege)
+      throws Exception {
+
+    String body = ucsbCurriculumService.getByGeJSON(qtr, level, geCode, geCollege);
+
+    return ResponseEntity.ok().body(body);
+  }
+
   // Backend for final exam info, similar to the above operation:
   @Operation(summary = "Get final exam information for a given quarter and course enrollment code")
   @GetMapping(value = "/finalsInfo", produces = "application/json")
