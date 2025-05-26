@@ -43,5 +43,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 <span class="fc" id="L44">    return ResponseEntity.ok().body(body);</span>
   }
+
+  // Backend for General Education Areas
+  @Operation(summary = &quot;Get all general education areas&quot;)
+  @GetMapping(value = &quot;/generalEducationInfo&quot;, produces = &quot;application/json&quot;)
+  public ResponseEntity&lt;String[]&gt; generalEducationAreas() throws Exception {
+<span class="fc" id="L51">    String[] generalEducationAreas = ucsbCurriculumService.getGEAreas();</span>
+<span class="fc" id="L52">    return ResponseEntity.ok().body(generalEducationAreas);</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
